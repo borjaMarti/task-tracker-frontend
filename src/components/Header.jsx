@@ -8,7 +8,7 @@ function Header({ title, showAddTask, onAdd }) {
   return (
     <header className='header'>
         <h1>{title}</h1>
-        {location.pathname === '/' && ( 
+        {location.pathname === '/tasks' && ( 
         <Button 
           showAddTask={showAddTask} 
           onAdd={onAdd} 
