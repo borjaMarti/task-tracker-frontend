@@ -1,3 +1,4 @@
+import config from "../config/config";
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
@@ -9,6 +10,7 @@ import AddTask from './components/AddTask';
 function App() {
   const [tasks, setTasks] = useState([]);
   const [showAddTask, setShowAddTask] = useState(false);
+  const baseUrl = config.apiUrl;
 
   // Load server
   useEffect(() => {
@@ -22,7 +24,7 @@ function App() {
 
   // Fetch Tasks
   const fetchTasks = async () => {
-    const res = await fetch('http://localhost:2121/tasks');
+    const res = await fetch(`${baseUrl}/tasks`);
     const data = await res.json();
 
     return data;
@@ -30,7 +32,7 @@ function App() {
 
   // Fetch Task
   const fetchTask = async (id) => {
-    const res = await fetch(`http://localhost:2121/tasks/fetchTask/${id}`);
+    const res = await fetch(`${baseUrl}/tasks/fetchTask/${id}`);
     const data = await res.json();
 
     return data;
@@ -38,7 +40,7 @@ function App() {
 
   // Add Task
   async function addTask(task) {
-    const res = await fetch('http://localhost:2121/tasks/addTask', {
+    const res = await fetch(`${baseUrl}/tasks/addTask`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -53,7 +55,7 @@ function App() {
   
   // Delete Task
   async function deleteTask(id) {
-    await fetch(`http://localhost:2121/tasks/deleteTask/${id}`, {
+    await fetch(`${baseUrl}/tasks/deleteTask/${id}`, {
       method: 'DELETE',
     })
 
@@ -65,7 +67,7 @@ function App() {
     const taskToToggle = await fetchTask(id);
     const reminderStatus = { reminder: !taskToToggle.reminder };
 
-    const res = await fetch(`http://localhost:2121/tasks/toggleReminder/${id}`, {
+    const res = await fetch(`${baseUrl}/tasks/toggleReminder/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
