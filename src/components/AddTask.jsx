@@ -13,7 +13,7 @@ function AddTask({ onAdd }) {
             return;
         }
 
-        onAdd({ text, day, reminder });
+        onAdd({ task: text, date: day, reminder: reminder });
 
         setText('');
         setDay('');
