@@ -22,7 +22,7 @@ function App() {
 
   // Fetch Tasks
   const fetchTasks = async () => {
-    const res = await fetch('http://localhost:5000/tasks');
+    const res = await fetch('http://localhost:2121/tasks');
     const data = await res.json();
 
     return data;
@@ -30,7 +30,7 @@ function App() {
 
   // Fetch Task
   const fetchTask = async (id) => {
-    const res = await fetch(`http://localhost:5000/tasks/${id}`);
+    const res = await fetch(`http://localhost:2121/tasks/fetchTask/${id}`);
     const data = await res.json();
 
     return data;
@@ -38,7 +38,7 @@ function App() {
 
   // Add Task
   async function addTask(task) {
-    const res = await fetch('http://localhost:5000/tasks', {
+    const res = await fetch('http://localhost:2121/tasks/addTask', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -53,31 +53,31 @@ function App() {
   
   // Delete Task
   async function deleteTask(id) {
-    await fetch(`http://localhost:5000/tasks/${id}`, {
+    await fetch(`http://localhost:2121/tasks/deleteTask/${id}`, {
       method: 'DELETE',
     })
 
-    setTasks(tasks.filter((task) => task.id !== id));
+    setTasks(tasks.filter((task) => task._id !== id));
   }
 
   // Toggle Reminder
   async function toggleReminder(id) {
     const taskToToggle = await fetchTask(id);
-    const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
+    const reminderStatus = { reminder: !taskToToggle.reminder };
 
-    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+    const res = await fetch(`http://localhost:2121/tasks/toggleReminder/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
       },
-      body: JSON.stringify(updTask)
+      body: JSON.stringify(reminderStatus)
     });
 
     const data = await res.json();
-
+    console.log(data)
     setTasks(
       tasks.map((task) => 
-        task.id === id ? {...task, reminder: data.reminder} : task 
+        task._id === id ? {...task, reminder: !data.reminder} : task 
       )
     );
   }
@@ -87,8 +87,7 @@ function App() {
       <div className="container">
         <Header showAddTask={showAddTask} onAdd={() => setShowAddTask(!showAddTask)} />
         <Routes>
-          <Route path='/' element={<Index />} />
-          <Route path='/tasks' exact element={
+          <Route path='/' exact element={
               <>
                 {showAddTask && <AddTask onAdd={addTask} />}
                 { tasks.length > 0 ?
@@ -97,8 +96,7 @@ function App() {
                 }
               </>
           } />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
+          <Route path='/about' element={<About />} />
         </Routes>
         <Footer />
       </div>
