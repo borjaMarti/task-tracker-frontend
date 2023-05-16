@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 function AddTask({ onAdd }) {
     const [text, setText] = useState('');
@@ -54,4 +54,4 @@ function AddTask({ onAdd }) {
             </form> )
 }
 
-export default AddTask
+export default AddTask;

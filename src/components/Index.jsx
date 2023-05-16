@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import Footer from './components/Footer'
+import { Link } from 'react-router-dom';
+import Footer from './components/Footer';
 
 function About() {
     return (
@@ -10,6 +10,6 @@ function About() {
           <Footer />
       </div>
     )
-  }
+}
   
-export default About
+export default About;

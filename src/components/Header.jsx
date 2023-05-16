@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types'
-import Button from './Button'
-import { useLocation } from 'react-router-dom'
+import Button from './Button';
+import { useLocation } from 'react-router-dom';
 
 function Header({ showAddTask, onAdd }) {
   const location = useLocation();
@@ -18,4 +17,4 @@ function Header({ showAddTask, onAdd }) {
   )
 }
 
-export default Header
+export default Header;

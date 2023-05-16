@@ -6,4 +6,4 @@ function Button({ showAddTask, onAdd }) {
     </button>
 }
 
-export default Button
+export default Button;

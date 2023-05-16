@@ -1,4 +1,4 @@
-import { FaTimes } from 'react-icons/fa'
+import { FaTimes } from 'react-icons/fa';
 
 function Task({ task, onDelete, onToggle }) {
     return (
@@ -15,4 +15,4 @@ function Task({ task, onDelete, onToggle }) {
     )
 }
   
-export default Task
+export default Task;

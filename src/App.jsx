@@ -1,10 +1,10 @@
 import config from "../config/config";
-import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import About from './components/About'
-import Tasks from './components/Tasks'
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import About from './components/About';
+import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
     const getTasks = async () => {
       const tasksFromServer = await fetchTasks();
       setTasks(tasksFromServer);
-    }
+    };
 
     getTasks();
   }, []);
@@ -46,7 +46,7 @@ function App() {
         'Content-type': 'application/json'
       },
       body: JSON.stringify(task)
-    })
+    });
 
     const data = await res.json();
 
@@ -57,7 +57,7 @@ function App() {
   async function deleteTask(id) {
     await fetch(`${baseUrl}/tasks/deleteTask/${id}`, {
       method: 'DELETE',
-    })
+    });
 
     setTasks(tasks.filter((task) => task._id !== id));
   }
@@ -76,7 +76,7 @@ function App() {
     });
 
     const data = await res.json();
-    console.log(data)
+    console.log(data);
     setTasks(
       tasks.map((task) => 
         task._id === id ? {...task, reminder: !data.reminder} : task 
@@ -106,4 +106,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

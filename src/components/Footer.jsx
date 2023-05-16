@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function Footer() {
   const location = useLocation();
@@ -16,4 +16,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default Footer;

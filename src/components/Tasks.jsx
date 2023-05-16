@@ -1,4 +1,4 @@
-import Task from './Task'
+import Task from './Task';
 
 function Tasks({ tasks, onDelete, onToggle }) {
   return (
@@ -15,4 +15,4 @@ function Tasks({ tasks, onDelete, onToggle }) {
   )
 }
 
-export default Tasks
+export default Tasks;
